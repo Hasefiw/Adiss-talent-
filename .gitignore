@@ -1,8 +1,49 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Dependencies
 node_modules/
-build/
-dist/
-coverage/
+/node_modules
+npm-debug.log
+yarn-error.log
+bun.lockb
+
+# Build output
+/dist
+/build
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 .DS_Store
+
+# Testing
+/coverage
+.nyc_output
+
+# Logs
+logs/
 *.log
-.env*
-!.env.example
+
+# Temporary files
+.cache/
+.tmp/
+tmp/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Firebase
+.firebase/
+.firebaserc
+
+# Production build artifacts
+*.js.map
+*.css.map
