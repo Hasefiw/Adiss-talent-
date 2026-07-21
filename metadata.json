@@ -1,0 +1,6 @@
+{
+  "name": "Addis Talent",
+  "description": "Africa's premier casting and talent network. Connects actors, models, and voice artists with top producers, directors, and casting agencies. Features custom digital audition self-tapes, talent registries, and premium project casting tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
