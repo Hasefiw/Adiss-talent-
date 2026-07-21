@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: adiss-talent-db
+    environment:
+      POSTGRES_USER: adiss_user
+      POSTGRES_PASSWORD: adiss_password
+      POSTGRES_DB: adiss_talent
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U adiss_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: adiss-talent-api
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      DATABASE_URL: postgresql://adiss_user:adiss_password@postgres:5432/adiss_talent
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      TELIBIR_API_KEY: ${TELIBIR_API_KEY}
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run dev
+
+volumes:
+  postgres_data:
